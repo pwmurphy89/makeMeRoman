@@ -11,20 +11,18 @@ function makeMeRoman(number){
 	var romanString = "";
 	for(var i=0; i<romanArray.length;i++){
 		var numberOfNumeral = Math.floor(number / romanArray[i].number);
+		for (var j=0; j<numberOfNumeral;j++) { romanString += romanArray[i].character; } 
 		number -= numberOfNumeral * romanArray[i].number;
-		for (var j=0; j<numberOfNumeral;j++){
-			romanString += romanArray[i].character;
-		} 
-		var indexIsOdd = i % 2;
 		var remainderAsFraction = number/romanArray[i].number;
-		var resultsOf = checkForSpecialCase(indexIsOdd, remainderAsFraction, i);
+		var resultsOf = checkForSpecialCase(remainderAsFraction, i);
 		romanString += resultsOf[0];
 		number -= resultsOf[1];
 	}
 	return romanString;
 }
 
-function checkForSpecialCase(indexIsOdd, remainderAsFraction, index){
+function checkForSpecialCase(remainderAsFraction, index){
+	var indexIsOdd = index % 2;
 	var charsToAdd = '';
 	var numToSubtract = 0;
 	if (!indexIsOdd && remainderAsFraction >= nineTenths){
