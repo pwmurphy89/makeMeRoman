@@ -25,17 +25,17 @@ function makeMeRoman(number){
 }
 
 function checkForSpecialCase(indexIsOdd, remainderAsFraction, index){
+	var charsToAdd = '';
+	var numToSubtract = 0;
 	if (!indexIsOdd && remainderAsFraction >= nineTenths){
-		var charsToAdd = romanArray[index + 2].character + romanArray[index].character;
-		var numToSubtract = romanArray[index].number * nineTenths;
-		return [charsToAdd, numToSubtract];
+		charsToAdd = romanArray[index + 2].character + romanArray[index].character;
+		numToSubtract = romanArray[index].number * nineTenths;
 	}
 	if (indexIsOdd && remainderAsFraction >= fourFifths){
-		var charsToAdd = romanArray[index + 1].character + romanArray[index].character;
-		var numToSubtract = romanArray[index].number * fourFifths;
-		return [charsToAdd, numToSubtract];
+		charsToAdd = romanArray[index + 1].character + romanArray[index].character;
+		numToSubtract = romanArray[index].number * fourFifths;
 	}
-	else { return ['', 0]; }
+	return [charsToAdd, numToSubtract]; 
 }
 
 
