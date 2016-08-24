@@ -26,12 +26,14 @@ function makeMeRoman(number){
 
 function checkForSpecialCase(indexIsOdd, remainderAsFraction, index){
 	if (!indexIsOdd && remainderAsFraction >= nineTenths){
-		return [romanArray[index + 2].character + romanArray[index].character, 
-				romanArray[index].number * nineTenths];
+		var charsToAdd = romanArray[index + 2].character + romanArray[index].character;
+		var numToSubtract = romanArray[index].number * nineTenths;
+		return [charsToAdd, numToSubtract];
 	}
 	if (indexIsOdd && remainderAsFraction >= fourFifths){
-		return [romanArray[(index + 1)].character + romanArray[index].character,
-				romanArray[index].number * fourFifths];
+		var charsToAdd = romanArray[index + 1].character + romanArray[index].character;
+		var numToSubtract = romanArray[index].number * fourFifths;
+		return [charsToAdd, numToSubtract];
 	}
 	else { return ['', 0]; }
 }
